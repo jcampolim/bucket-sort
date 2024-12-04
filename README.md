@@ -1,4 +1,5 @@
 # Bucket Sort Paralelo
+> Autores: [Enzo Guarnieri](https://github.com/enzo-guarnieri), [Erika Borges](https://github.com/ErikaBP), [Júlia Campolim](https://github.com/jcampolim) e [Otávio Bruzadin](https://github.com/OtavioBruzadin)
 
 ### `1. Descrição do problema`
 
@@ -202,8 +203,6 @@ O algoritmo original do Bucket Sort está usando o Insertion Sort como auxiliar 
 | 8 | 195,338 |
 | 9 | 198,322 |
 | 10 | 201,157 |
-
-Tabela 1: dados de tempo de execução do algoritmo sequencial.
 
 #### `3.2 Odd-Even Sort`
 
