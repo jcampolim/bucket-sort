@@ -22,8 +22,20 @@ O valor de Speedup alcançado na implementação do algoritmo paralelo foi próx
 
 Os valores de eficiência demonstram um alto grau de uso dos processadores com 1 e 2 processadores. Possuindo um desempenho menor com 3 e 4 processadores, mas ainda sendo um valor elevado.
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/tempo-execucao/quicksort.png" alt="Gráfico do tempo de execução do Quick Sort">
+<div align="center">
+   
+   ![Gráfico do tempo de execução do Quick Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/tempo-execucao/quicksort.png)
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/quicksort.png" alt="Gráfico do cálculo de Speedup do Quick Sort">
+</div>
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/quicksort.png" alt="Gráfico do cálculo de eficiência do Quick Sort">
+<div align="center">
+   
+   ![Gráfico do cálculo de Speedup do Quick Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/quicksort.png)
+
+</div>
+
+<div align="center">
+   
+   ![Gráfico do tcálculo de eficiência do Quick Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/quicksort.png)
+
+</div>

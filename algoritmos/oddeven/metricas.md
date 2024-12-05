@@ -20,8 +20,20 @@ Os valores de eficiência indicam que as execuções com 2 e 3 processadores nã
 
 Para entender melhor o comportamento do algoritmo perante a uma variação de processadores, é preciso realizar testes mais extensos e com uma variação maior na quantidade de processadores.
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/tempo-execucao/oddeven.png" alt="Gráfico do tempo de execução do Odd Even Sort">
+<div align="center">
+   
+   ![Gráfico do tempo de execução do Odd Even Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/tempo-execucao/oddeven.png)
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/oddeven.png" alt="Gráfico do cálculo de Speedup do Odd Even Sort">
+</div>
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/oddeven.png" alt="Gráfico do cálculo de eficiência do Odd Even Sort">
+<div align="center">
+   
+   ![Gráfico do cálculo de Speedup do Odd Even Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/oddeven.png)
+
+</div>
+
+<div align="center">
+   
+   ![Gráfico do tcálculo de eficiência do Odd Even Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/oddeven.png)
+
+</div>

@@ -9,7 +9,11 @@ A entrada consiste em duas partes: os parâmetros e o conteúdo que será ordena
 
 A saída consiste nos números ordenados.
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/entrada-saida.png" alt="Exemplo de entrada e saída do programa">
+<div align="center">
+   
+   ![Exemplo de entrada e saída do programa](https://github.com/jcampolim/bucket-sort/blob/main/assets/entrada-saida.png)
+
+</div>
 
 ### `2. Solução serial`
 
@@ -216,19 +220,27 @@ O Odd-Even Sort tem como objetivo quebrar as dependências entre cada iteração
 
 Este processo alternado permite múltiplas comparações independentes que podem ser executadas de forma paralela. Isso porque, cada comparação na “passada ímpar” é independente das outras, o mesmo ocorre na “passada par”. Essa independência fica evidente no esquema abaixo:
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/oddeven.png" alt="Exemplo do funcionamento do Odd Even Sort">
+<div align="center">
+   
+   ![Exemplo do funcionamento do Odd Even Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/oddeven.png)
+
+</div>
 
 Dessa forma, o grão da paralelização seria o laço de repetição responsável por paralelizar cada passada. 
 
 * [Algoritmo sequencial](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/oddeven/oddeven.c)
 * [Algoritmo paralelo](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/oddeven/oddevenParallel.c)
-* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/oddeven/oddeven.md)
+* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/oddeven/metricas.md)
 
 #### `3.3 Merge Sort`
 
 O Merge Sort é um algoritmo de ordenação eficiente, de complexidade O(n log n), que utiliza a estratégia de divisão e conquista. Sua abordagem é dividir o vetor recursivamente em subvetores menores até que cada subvetor contenha apenas um elemento que, por definição, está ordenado. Em seguida, os subvetores são intercalados de forma ordenada.
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/mergesort.png" alt="Exemplo do funcionamento do Merge Sort">
+<div align="center">
+   
+   ![Exemplo do funcionamento do Merge Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/mergesort.png)
+
+</div>
 
 Para intercalar os elementos do vetor, utiliza-se uma função chamada Merge, que recebe duas listas ordenadas e combina em uma única lista também ordenada. O algoritmo Merge que foi utilizado no código do Bucket Sort é o mais tradicional:
 
@@ -296,7 +308,11 @@ Assim como o Merge Sort, o Quick Sort também utiliza a técnica de divisão e c
 
 A divisão do vetor no Quick Sort, é realizada por uma função chamada Partition, onde um pivô é escolhido e todos os elementos menores que o pivô são rearranjados para o início do vetor e os elementos maiores são rearranjados para o final. Após todos os elementos serem separados entre menores e maiores que o pivô, o pivô já está ordenado na sua posição correta e o processo é repetido recursivamente nos subvetores que se formaram à esquerda e à direita do pivô, até que todo o vetor esteja ordenado.
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/quicksort.png" alt="Exemplo do funcionamento do Quick Sort">
+<div align="center">
+   
+   ![Exemplo do funcionamento do Quick Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/quicksort.png)
+
+</div>
 
 Dentro do Partition, existem várias formas de escolher um pivô, a abordagem utilizada foi a de escolher o primeiro elemento do vetor.
 
@@ -330,7 +346,7 @@ Esta abordagem reduz o custo computacional, uma vez que o paralelismo é aplicad
 
 * [Algoritmo sequencial](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/quicksort/quicksort.c)
 * [Algoritmo paralelo](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/quicksort/quicksortParallel.c)
-* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/quicksort/quicksort.md)
+* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/quicksort/metricas.md)
 
 #### `3.5 Radix Sort`
 
@@ -338,13 +354,16 @@ Ao contrário dos outros algoritmos de ordenação que foram citados, o Radix So
 
 A ordenação é realizada passo-a-passo com o auxílio de um algoritmo de ordenação estável. No caso, foi utilizado o counting Sort, um algoritmo eficiente quando se trata da ordenação de elementos em um intervalo pequeno e com muitas repetições de valores.
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/radixsort.png" alt="Exemplo do funcionamento do Radix Sort">
+<div align="center">
+   
+   ![Exemplo do funcionamento do Radix Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/radixsort.png)
 
+</div>
 Dentro deste algoritmo, foram encontrados alguns laços de repetição passíveis de paralelização, como a contagem de ocorrências de cada dígito, a distribuição dos elementos já ordenados e a cópia dos valores ordenados para o vetor original. Estes laços correspondem ao grão de paralelismo do Radix Sort.
 
 * [Algoritmo sequencial](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/radixsort/radixsort.c)
 * [Algoritmo paralelo](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/radixsort/radixsortParallel.c)
-* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/radixsort/radixsort.md)
+* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/radixsort/metricas.md)
 
 ### `4. Escalabilidade e desempenho`
 
@@ -370,7 +389,11 @@ Os testes realizados em cada variação dos algoritmos permitiram calcular o Spe
 </table>
 <br></br>
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/comparacao.png" alt="Gráfico comparativo dos valores de Speedup obtidos">
+<div align="center">
+   
+   ![Gráfico comparativo dos valores de Speedup obtidos](https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/comparacao.png)
+
+</div>
 
 Os algoritmos que utilizaram o Merge Sort e o Radix Sort apresentam um baixo ganho de tempo, com a diferença entre as execuções sequenciais e paralelas sendo quase nula. Entretanto, este comportamento foi atribuído ao tamanho da entrada de dados utilizada, uma vez que o tempo de execução da parte paralela dos algoritmos representava apenas 38,5% no caso do Merge Sort e 20,7% no caso do Radix Sort, em relação ao tempo total de execução. Como a maior parte do tempo de execução é dedicada à parte sequencial do algoritmo, a paralelização não gerou um ganho expressivo de desempenho.
 
@@ -406,7 +429,11 @@ Os dados de eficiência obtidos foram:
 </table>
 <br></br>
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/comparacao.png" alt="Gráfico comparativo dos valores de eficiência obtidos">
+<div align="center">
+   
+   ![Gráfico comparativo dos valores de eficiência obtidos](https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/comparacao.png)
+
+</div>
 
 O ideal é que os valores de eficiência estejam o mais próximo possível de 100%, indicando que todos os processadores alocados estão usando sua capacidade total.
 

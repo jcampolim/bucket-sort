@@ -26,8 +26,20 @@ A partir desses números, é possível realizar o cálculo da eficiência do alg
 
 Nas execuções com 2 ou mais processadores, a eficiência do algoritmo é baixa, cerca de 30%. Esse desempenho pode ser explicado pela pequena proporção do código que pode ser paralelizada. Dessa forma, a parte paralelizada do código é distribuída entre vários processadores, o que reduz a carga de trabalho de cada um, mas também limita os ganhos de desempenho.
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/tempo-execucao/radixsort.png" alt="Gráfico do tempo de execução do Radix Sort">
+<div align="center">
+   
+   ![Gráfico do tempo de execução do Radix Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/tempo-execucao/radixsort.png)
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/radixsort.png" alt="Gráfico do cálculo de Speedup do Radix Sort">
+</div>
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/radixsort.png" alt="Gráfico do cálculo de eficiência do Radix Sort">
+<div align="center">
+   
+   ![Gráfico do cálculo de Speedup do Radix Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/radixsort.png)
+
+</div>
+
+<div align="center">
+   
+   ![Gráfico do tcálculo de eficiência do Radix Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/radixsort.png)
+
+</div>

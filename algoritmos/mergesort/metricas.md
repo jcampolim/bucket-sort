@@ -24,8 +24,20 @@ Pelos valores de Speedup, é possível calcular também a eficiência dos algori
 
 A eficiência do Merge Sort diminuiu à medida que o número de processadores aumentou. Isso pode ser explicado pelo fato de que a parte paralelizável do algoritmo, que já era relativamente pequena, foi subdividida entre um número maior de processadores, resultando em maior ociosidade.
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/tempo-execucao/mergesort.png" alt="Gráfico do tempo de execução do Merge Sort">
+<div align="center">
+   
+   ![Gráfico do tempo de execução do Merge Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/tempo-execucao/mergesort.png)
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/mergesort.png" alt="Gráfico do cálculo de Speedup do Merge Sort">
+</div>
 
-<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/mergesort.png" alt="Gráfico do cálculo de eficiência do Merge Sort">
+<div align="center">
+   
+   ![Gráfico do cálculo de Speedup do Merge Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/mergesort.png)
+
+</div>
+
+<div align="center">
+   
+   ![Gráfico do tcálculo de eficiência do Merge Sort](https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/mergesort.png)
+
+</div>
