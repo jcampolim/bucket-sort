@@ -1,5 +1,5 @@
 # Bucket Sort Paralelo
-> Autores: [Enzo Guarnieri](https://github.com/enzo-guarnieri), [Erika Borges](https://github.com/ErikaBP), [Júlia Campolim](https://github.com/jcampolim) e [Otávio Bruzadin](https://github.com/OtavioBruzadin)
+> Autores: [Enzo Guarnieri](https://github.com/enzo-guarnieri), [Erika Borges Piaui](https://github.com/ErikaBP), [Júlia Campolim de Oste](https://github.com/jcampolim) e [Otávio Augusto Freire de Andrade Bruzadin](https://github.com/OtavioBruzadin)
 
 ### `1. Descrição do problema`
 
@@ -220,6 +220,10 @@ Este processo alternado permite múltiplas comparações independentes que podem
 
 Dessa forma, o grão da paralelização seria o laço de repetição responsável por paralelizar cada passada. 
 
+* [Algoritmo sequencial](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/oddeven/oddeven.c)
+* [Algoritmo paralelo](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/oddeven/oddevenParallel.c)
+* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/oddeven/oddeven.md)
+
 #### `3.3 Merge Sort`
 
 O Merge Sort é um algoritmo de ordenação eficiente, de complexidade O(n log n), que utiliza a estratégia de divisão e conquista. Sua abordagem é dividir o vetor recursivamente em subvetores menores até que cada subvetor contenha apenas um elemento que, por definição, está ordenado. Em seguida, os subvetores são intercalados de forma ordenada.
@@ -282,6 +286,10 @@ No caso, a profundidade escolhida foi 3, o que resulta na divisão do vetor orig
 
 Outra abordagem possível para restringir o paralelismo é limitar pela quantidade de elementos no subvetor, mas esta estratégia demandaria mais testes aprofundados para identificar o ponto de paralelismo. Além disso, é preciso levar em conta que a melhor estratégia depende da arquitetura e dos recursos computacionais utilizados, não havendo uma resposta “certa”.
 
+* [Algoritmo sequencial](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/mergesort/mergesort.c)
+* [Algoritmo paralelo](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/mergesort/mergesortParallel.c)
+* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/mergesort/metricas.md)
+
 #### `3.4 Quick Sort`
 
 Assim como o Merge Sort, o Quick Sort também utiliza a técnica de divisão e conquista para ordenar um vetor. O Quick Sort, em geral,  é um algoritmo eficiente, com complexidade O(n log n) no seu caso médio; no entanto, em seu pior caso a complexidade aumenta significativamente, passando a ser O(n^2).
@@ -320,6 +328,10 @@ Dessa forma, a abordagem adotada foi simplificar o paralelismo, limitando a árv
 
 Esta abordagem reduz o custo computacional, uma vez que o paralelismo é aplicado apenas até uma profundidade limitada da recursão. A profundidade 3 foi escolhida mediante a testes rápidos, mas que poderiam ser aprofundados para identificar o momento ideal de paralelismo.
 
+* [Algoritmo sequencial](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/quicksort/quicksort.c)
+* [Algoritmo paralelo](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/quicksort/quicksortParallel.c)
+* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/quicksort/quicksort.md)
+
 #### `3.5 Radix Sort`
 
 Ao contrário dos outros algoritmos de ordenação que foram citados, o Radix Sort não se baseia na comparação dos elementos de um vetor para realizar a ordenação. Ao invés disso, ele ordena os elementos com base nos seus dígitos, um de cada vez, começando pelo dígito de maior ordem até o de menor ordem. Isso faz do Radix Sort uma excelente escolha para ordenar números inteiros ou conjuntos de caracteres com tamanho fixo, sendo vantajoso no cenário testado.
@@ -329,3 +341,95 @@ A ordenação é realizada passo-a-passo com o auxílio de um algoritmo de orden
 <img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/radixsort.png" alt="Exemplo do funcionamento do Radix Sort">
 
 Dentro deste algoritmo, foram encontrados alguns laços de repetição passíveis de paralelização, como a contagem de ocorrências de cada dígito, a distribuição dos elementos já ordenados e a cópia dos valores ordenados para o vetor original. Estes laços correspondem ao grão de paralelismo do Radix Sort.
+
+* [Algoritmo sequencial](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/radixsort/radixsort.c)
+* [Algoritmo paralelo](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/radixsort/radixsortParallel.c)
+* [Métricas](https://github.com/jcampolim/bucket-sort/blob/main/algoritmos/radixsort/radixsort.md)
+
+### `4. Escalabilidade e desempenho`
+
+#### `4.1 Speedup`
+
+Os testes realizados em cada variação dos algoritmos permitiram calcular o Speedup com base na média de 10 execuções sequenciais e 10 execuções paralelas com diferentes cores. Os resultados obtidos foram os seguintes para 4 processadores (versão mais eficiente testada):
+
+<table>
+    <tr>
+        <td></td>
+        <td>Merge Sort</td>
+        <td>Radix Sort</td>
+        <td>Quick Sort</td>
+        <td>Odd Even Sort</td>
+    </tr>
+    <tr>
+        <td>Speedup</td>
+        <td>1,069861173</td>
+        <td>1,171161255</td>
+        <td>3,065459051</td>
+        <td>3,127129349</td>
+    </tr>
+</table>
+<br></br>
+
+<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/speedup/comparacao.png" alt="Gráfico comparativo dos valores de Speedup obtidos">
+
+Os algoritmos que utilizaram o Merge Sort e o Radix Sort apresentam um baixo ganho de tempo, com a diferença entre as execuções sequenciais e paralelas sendo quase nula. Entretanto, este comportamento foi atribuído ao tamanho da entrada de dados utilizada, uma vez que o tempo de execução da parte paralela dos algoritmos representava apenas 38,5% no caso do Merge Sort e 20,7% no caso do Radix Sort, em relação ao tempo total de execução. Como a maior parte do tempo de execução é dedicada à parte sequencial do algoritmo, a paralelização não gerou um ganho expressivo de desempenho.
+
+Dessa forma, o tempo gasto pela parte sequencial acaba sendo o principal gargalo. A partir disso, com o auxílio da Lei de Amdahl, foi possível estimar o limite máximo de processadores em que o Speedup poderia aumentar de forma significativa. Esse limite se aproximou dos valores de Speedup observados nos testes.
+
+Para validar esta teoria, seria necessário testar os princípios da Lei de Gustafson, aumentando progressivamente a entrada de dados, permitindo observar se esse aumento, proporcional ao aumento no número de processadores, resulta em um ganho de desempenho mais expressivo.
+
+Por outro lado, os algoritmos do Odd-Even Sort e do Quick Sort apresentaram um Speedup superior que 3, evidenciando que as suas versões paralelas são expressivamente mais performáticas do que as versões sequenciais.
+
+Todos os valores de Speedup obtidos se mostraram próximos aos valores teóricos calculados,  que confirma que os algoritmos desenvolvidos possuem um alto grau de paralelismo. Porém, todos os Speedup estavam abaixo do dos valores esperados, o que sugere que existem pontos de paralelismo que ainda não foram completamente explorados, como a parte de distribuição dos dados nos baldes, que está sendo realizada de forma sequencial.
+
+#### `4.2 Eficiência`
+
+A eficiência dos algoritmos pode ser medida pelo número de Speedup obtido e da quantidade de processadores utilizados e é responsável por determinar o uso efetivo dos processadores alocados. Para realizar os cálculos, foram utilizados os valores de Speedup relacionados a 4 processadores, já que esta configuração se mostrou mais eficiente.
+
+Os dados de eficiência obtidos foram:
+
+<table>
+    <tr>
+        <td></td>
+        <td>Merge Sort</td>
+        <td>Radix Sort</td>
+        <td>Quick Sort</td>
+        <td>Odd Even Sort</td>
+    </tr>
+    <tr>
+        <td>Eficiência</td>
+        <td>0,2674652933</td>
+        <td>0,2927903137</td>
+        <td>0,7663647627</td>
+        <td>0,7817823373</td>
+    </tr>
+</table>
+<br></br>
+
+<img src="https://github.com/jcampolim/bucket-sort/blob/main/assets/eficiencia/comparacao.png" alt="Gráfico comparativo dos valores de eficiência obtidos">
+
+O ideal é que os valores de eficiência estejam o mais próximo possível de 100%, indicando que todos os processadores alocados estão usando sua capacidade total.
+
+As medições indicam que os algoritmos utilizando o Odd-Even Sort e o Quick Sort apresentaram uma eficiência semelhante, ambas se aproximaram de 80%. Isso sugere que esses algoritmos paralelos fazem um bom uso dos recursos computacionais disponíveis, aproveitando adequadamente o paralelismo e apresentando alta escalabilidade.
+
+Por outro lado, os algoritmos com Merge Sort e Radix Sort apresentaram uma eficiência baixa, em torno de 25%, o que indica uma distribuição inadequada dos recursos computacionais. Essa baixa eficiência pode ser explicada pela característica desses algoritmos, que possuem um tempo gasto na parte paralela proporcionalmente menor em relação ao tempo da parte sequencial, o que limita os ganhos de desempenho.
+
+Essa teoria da má distribuição dos recursos poderia ser validada por meio de uma bateria de testes aplicando a Lei de Gustafson, que permite uma análise mais detalhada do comportamento do paralelismo com diferentes entradas que variam proporcionalmente à quantidade de processadores.
+
+### `5. Solução final`
+
+Com base nas análises de desempenho realizadas dos algoritmos paralelos, é possível concluir que cada algoritmo possui características próprias que influenciam diretamente na sua paralelização e eficiência. Apesar dessas diferenças, algumas conclusões gerais podem ser feitas sobre o desempenho observado durante os testes.
+
+Os algoritmos que utilizam o Quick Sort e o Odd-Even Sort apresentaram um Speedup significativo, com ganhos de 3 vezes em comparação com suas versões sequenciais. Esse desempenho indica que os algoritmos possuem um bom potencial para paralelização, aproveitando a adição de processadores. 
+
+Porém, eles são consideravelmente mais lentos quando comparados com o Merge Sort e o Radix Sort, que apresentaram limitações de paralelização, ambos com um ganho menor de Speedup. No entanto, a tendência destes algoritmos é apresentar uma maior escalabilidade quando testados em conjuntos maiores de dados.
+
+Portanto, conclui-se que, mesmo com índices menores de paralelismo, o uso do Bucket Sort aliado ao Merge Sort ou ao Radix Sort é mais vantajoso em termos de tempo de execução e de escalabilidade. O Quick Sort provavelmente também teria um bom desempenho com entradas do seu caso médio, mas para comprovar seriam necessários mais testes.
+
+#### `5.1 Desenvolvimento do Bash`
+
+Durante o desenvolvimento do trabalho, identificou-se a necessidade de uma ferramenta que auxiliasse na medição de desempenho dos algoritmos de forma eficiente e uniforme. Neste contexto, o desenvolvimento de um script Bash trouxe praticidade e precisão ao processo, garantindo que os testes fossem conduzidos de maneira consistente entre todos os integrantes da equipe.
+
+Esse script automatiza as execuções do código C e a medição dos tempos de execução em milissegundos, registrando os resultados em um arquivo CSV. Esse formato estruturado não só facilita a análise estatística dos dados, como também permite a fácil importação dos resultados para ferramentas de análise de dados, oferecendo suporte para a criação de gráficos e relatórios detalhados sobre o desempenho dos algoritmos.
+
+Em resumo, o script Bash contribuiu significativamente para a eficiência e confiabilidade do trabalho, reduzindo o risco de erro humano, acelerando o processo de coleta de dados, e possibilitando a reprodutibilidade dos experimentos. Possibilitando que o foco principal da equipe estivesse na análise dos resultados, ao invés de na execução manual dos testes.
